@@ -16,7 +16,7 @@ def welcome(message):
     
     markup.add(button1)
     bot.send_message(message.chat.id,
-                     "Приветствую в Ночной смене!\n Для начала ознакомься с тарифами,\n это можно сделать по кнопке ниже👇 ".format(message.from_user, bot.get_me()),parse_mode='html',reply_markup=markup)
+                     "Ознакомься с тарифами,\nэто можно сделать по кнопке ниже👇 ".format(message.from_user, bot.get_me()),parse_mode='html',reply_markup=markup)
 @bot.message_handler(content_types=['text','photo'])
 def message_reply(message):    
     markup=types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -55,7 +55,7 @@ def message_reply(message):
         bot.send_message(message.chat.id,"Отправь скриншот об оплате ",reply_markup=markup)
         bot.register_next_step_handler(message, help_bot)
     elif message.text=='Назад' :
-         message_reply(message)
+         bot.register_next_step_handler(message, welcome)
         
 
 
