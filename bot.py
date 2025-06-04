@@ -38,18 +38,17 @@ def message_reply(message):
     markup.add(pay, back)
     
 
-        if message.text=='Неделя':
+    if message.text=='Неделя':
                 
                      
-                bot.send_message(user_id,"Способ оплаты:\nПо номеру +7 (915) 785 16 13 Федор Г. \nТ-Банк(Обязательно!)\n  \nК оплате: 160.00 🇷🇺RUB",reply_markup=markup)
+            bot.send_message(user_id,"Способ оплаты:\nПо номеру +7 (915) 785 16 13 Федор Г. \nТ-Банк(Обязательно!)\n  \nК оплате: 160.00 🇷🇺RUB",reply_markup=markup)
                 
-
-        elif message.text=='Месяц':
+    elif message.text=='Месяц':
                 
-                bot.send_message(message.chat.id,"Способ оплаты:\nПо номеру +7 (915) 785 16 13 Федор Г. \nТ-Банк(Обязательно!)\n  \nК оплате: 380.00 🇷🇺RUB",reply_markup=markup)
-        elif message.text=='Навсегда':
+            bot.send_message(message.chat.id,"Способ оплаты:\nПо номеру +7 (915) 785 16 13 Федор Г. \nТ-Банк(Обязательно!)\n  \nК оплате: 380.00 🇷🇺RUB",reply_markup=markup)
+    elif message.text=='Навсегда':
                 
-                bot.send_message(message.chat.id,"Способ оплаты:\nПо номеру +7 (915) 785 16 13 Федор Г. \nТ-Банк(Обязательно!)\n  \nК оплате: 960.00 🇷🇺RUB",reply_markup=markup)
+            bot.send_message(message.chat.id,"Способ оплаты:\nПо номеру +7 (915) 785 16 13 Федор Г. \nТ-Банк(Обязательно!)\n  \nК оплате: 960.00 🇷🇺RUB",reply_markup=markup)
         
     if message.text=='Я оплатил':
         markup = types.ReplyKeyboardRemove()
