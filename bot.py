@@ -55,7 +55,7 @@ def message_reply(message):
         bot.send_message(message.chat.id,"Отправь скриншот об оплате ",reply_markup=markup)
         bot.register_next_step_handler(message, help_bot)
     elif message.text=='Назад' :
-         bot.register_next_step_handler(message, welcome)
+         bot.register_next_step_handler(message, message_reply)
         
 
 
