@@ -16,7 +16,7 @@ def welcome(message):
     
     markup.add(button1)
     bot.send_message(message.chat.id,
-                     "Приветствую в Ночной смене Для начала ознакомься с тарифами, это можно сделать по кнопке ниже👇 ".format(message.from_user, bot.get_me()),parse_mode='html',reply_markup=markup)
+                     "Приветствую в Ночной смене!\n Для начала ознакомься с тарифами,\n это можно сделать по кнопке ниже👇 ".format(message.from_user, bot.get_me()),parse_mode='html',reply_markup=markup)
 @bot.message_handler(content_types=['text','photo'])
 def message_reply(message):    
     markup=types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -24,6 +24,7 @@ def message_reply(message):
     month=types.KeyboardButton('Месяц')
     always=types.KeyboardButton('Навсегда')
     pay=types.KeyboardButton('Я оплатил')
+    back=types.KeyboardButton('Назад')
     user_id=message.from_user.id
     
     
@@ -34,24 +35,29 @@ def message_reply(message):
         bot.send_message(message.chat.id,'Чтобы ознакомиться с тарифом, выбери необходимый, нажав соответствующую кнопку',reply_markup=markup)
         
     markup=types.ReplyKeyboardMarkup(resize_keyboard=True)
-    markup.add(pay)
-
-    if message.text=='Неделя':
-            
-                 
-            bot.send_message(user_id,"Способ оплаты:\nПо номеру +7 (915) 785 16 13 Федор Г. \nТ-Банк(Обязательно!)\n  \nК оплате: 160.00 🇷🇺RUB",reply_markup=markup)
-
-    if message.text=='Месяц':
-            
-            bot.send_message(message.chat.id,"Способ оплаты:\nПо номеру +7 (915) 785 16 13 Федор Г. \nТ-Банк(Обязательно!)\n  \nК оплате: 380.00 🇷🇺RUB",reply_markup=markup)
-    if message.text=='Навсегда':
-            
-            bot.send_message(message.chat.id,"Способ оплаты:\nПо номеру +7 (915) 785 16 13 Федор Г. \nТ-Банк(Обязательно!)\n  \nК оплате: 960.00 🇷🇺RUB",reply_markup=markup)
+    markup.add(pay, back)
     
+
+        if message.text=='Неделя':
+                
+                     
+                bot.send_message(user_id,"Способ оплаты:\nПо номеру +7 (915) 785 16 13 Федор Г. \nТ-Банк(Обязательно!)\n  \nК оплате: 160.00 🇷🇺RUB",reply_markup=markup)
+                
+
+        elif message.text=='Месяц':
+                
+                bot.send_message(message.chat.id,"Способ оплаты:\nПо номеру +7 (915) 785 16 13 Федор Г. \nТ-Банк(Обязательно!)\n  \nК оплате: 380.00 🇷🇺RUB",reply_markup=markup)
+        elif message.text=='Навсегда':
+                
+                bot.send_message(message.chat.id,"Способ оплаты:\nПо номеру +7 (915) 785 16 13 Федор Г. \nТ-Банк(Обязательно!)\n  \nК оплате: 960.00 🇷🇺RUB",reply_markup=markup)
+        
     if message.text=='Я оплатил':
         markup = types.ReplyKeyboardRemove()
         bot.send_message(message.chat.id,"Отправь скриншот об оплате ",reply_markup=markup)
-        bot.register_next_step_handler(message, help_bot)    
+        bot.register_next_step_handler(message, help_bot)
+    elif message.text=='Назад' :
+         message_reply(message)
+        
 
 
 # Функция, отправляющая вопрос от пользователя в чат поддержки
